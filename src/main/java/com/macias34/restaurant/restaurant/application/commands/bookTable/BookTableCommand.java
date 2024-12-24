@@ -4,6 +4,5 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record BookTableCommand(
-        UUID tableId, Long seatsNumber, LocalDateTime startDate, LocalDateTime endDate) {
-
+                UUID tableId, Long seatsNumber, LocalDateTime startDate, LocalDateTime endDate) {
 }
