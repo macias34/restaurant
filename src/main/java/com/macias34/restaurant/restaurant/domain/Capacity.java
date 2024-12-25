@@ -1,5 +1,8 @@
 package com.macias34.restaurant.restaurant.domain;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public record Capacity(Long value) {
     public Capacity {
         if (value < 1) {

@@ -1,8 +1,8 @@
 package com.macias34.restaurant.restaurant.api;
 
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.commandhandling.GenericCommandMessage;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.macias34.restaurant.restaurant.application.commands.createReservation.CreateReservationCommand;
@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 @RestController("/reservations")
 @RequiredArgsConstructor
 public class ReservationController {
-    private CommandBus commandBus;
+    private final CommandGateway commandGateway;
 
     @PostMapping("/")
-    public void createReservation(CreateReservationCommand command) {
-        commandBus.dispatch(GenericCommandMessage.asCommandMessage(command));
+    public void createReservation(@RequestBody CreateReservationCommand command) {
+        commandGateway.send(command);
     }
 }

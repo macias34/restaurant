@@ -1,6 +1,7 @@
 package com.macias34.restaurant.restaurant.application.commands.bookTable;
 
 import org.axonframework.commandhandling.CommandHandler;
+import org.springframework.stereotype.Component;
 
 import com.macias34.restaurant.availability.TimeSlot;
 import com.macias34.restaurant.common.EventPublisher;
@@ -10,6 +11,7 @@ import com.macias34.restaurant.restaurant.domain.TableRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Component
 @RequiredArgsConstructor
 public class BookTableCommandHandler {
 

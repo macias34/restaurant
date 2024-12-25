@@ -4,6 +4,7 @@ import com.macias34.restaurant.availability.TimeSlot;
 import com.macias34.restaurant.restaurant.domain.CannotConfirmReservation;
 import com.macias34.restaurant.restaurant.domain.Reservation;
 import com.macias34.restaurant.restaurant.domain.ReservationConfirmed;
+import com.macias34.restaurant.restaurant.domain.TableId;
 
 import static com.macias34.restaurant.DateFixtures.createDateTime;
 import static com.macias34.restaurant.DomainEventAssertion.assertEvent;
@@ -17,7 +18,8 @@ public class ReservationTests {
     @Test
     public void shouldConfirmTable() {
         // Given
-        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)));
+        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)),
+                TableId.generate());
 
         // When
         reservation.confirm();
@@ -32,7 +34,8 @@ public class ReservationTests {
     public void shouldNotConfirmTableIfReservationIsAlreadyConfirmed() {
 
         // Given
-        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)));
+        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)),
+                TableId.generate());
         reservation.confirm();
 
         // When & Then

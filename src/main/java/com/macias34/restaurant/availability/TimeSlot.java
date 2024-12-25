@@ -2,6 +2,9 @@ package com.macias34.restaurant.availability;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public record TimeSlot(LocalDateTime start, LocalDateTime end) {
 
     public TimeSlot {
