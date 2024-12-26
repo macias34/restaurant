@@ -10,7 +10,6 @@ import com.macias34.restaurant.availability.TimeSlot;
 import com.macias34.restaurant.common.DomainEvent;
 
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -20,7 +19,7 @@ import jakarta.persistence.Transient;
 import lombok.Getter;
 
 @Entity
-@jakarta.persistence.Table
+@jakarta.persistence.Table(name = "dining_table")
 public class Table {
     @Getter
     @EmbeddedId

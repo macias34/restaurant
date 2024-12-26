@@ -20,8 +20,8 @@ public class CreateReservationCommandHandler {
 
     @CommandHandler
     public void handle(CreateReservationCommand command) {
-        Reservation reservation = new Reservation(new TimeSlot(command.getStartDate(), command.getEndDate()),
-                new TableId(command.getTableId()));
+        Reservation reservation = new Reservation(new TableId(command.tableId()),
+                new TimeSlot(command.startDate(), command.endDate()), command.seatsNumber());
         reservation.confirm();
 
         reservationRepository.save(reservation);

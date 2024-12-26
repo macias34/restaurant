@@ -11,11 +11,12 @@ import lombok.RequiredArgsConstructor;
 
 @RestController("/reservations")
 @RequiredArgsConstructor
-public class ReservationController {
+public class ReservationRestController {
     private final CommandGateway commandGateway;
 
     @PostMapping("/")
     public void createReservation(@RequestBody CreateReservationCommand command) {
-        commandGateway.send(command);
+        commandGateway.sendAndWait(command);
     }
+
 }

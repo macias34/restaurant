@@ -18,15 +18,17 @@ public class ReservationTests {
     @Test
     public void shouldConfirmTable() {
         // Given
-        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)),
-                TableId.generate());
+        TimeSlot timeSlot = new TimeSlot(createDateTime(10, 0), createDateTime(12, 0));
+        TableId tableId = TableId.generate();
+        Long seatsNumber = 5L;
+        Reservation reservation = new Reservation(tableId, timeSlot, seatsNumber);
 
         // When
         reservation.confirm();
 
         // Then
         var event = reservation.getUncommitedEvents().getFirst();
-        assertEvent(event, new ReservationConfirmed(reservation.getId()));
+        assertEvent(event, new ReservationConfirmed(reservation.getId(), tableId, timeSlot, seatsNumber));
         assertTrue(reservation.isConfirmed());
     }
 
@@ -34,8 +36,12 @@ public class ReservationTests {
     public void shouldNotConfirmTableIfReservationIsAlreadyConfirmed() {
 
         // Given
-        Reservation reservation = new Reservation(new TimeSlot(createDateTime(10, 0), createDateTime(12, 0)),
-                TableId.generate());
+        TimeSlot timeSlot = new TimeSlot(createDateTime(10, 0), createDateTime(12, 0));
+        TableId tableId = TableId.generate();
+        Long seatsNumber = 5L;
+        Reservation reservation = new Reservation(tableId, timeSlot, seatsNumber);
+
+        // When
         reservation.confirm();
 
         // When & Then

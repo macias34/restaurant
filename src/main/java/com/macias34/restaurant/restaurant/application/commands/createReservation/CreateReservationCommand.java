@@ -5,13 +5,12 @@ import java.util.UUID;
 
 import com.macias34.restaurant.restaurant.domain.TableId;
 
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
-@Value
-public class CreateReservationCommand {
+public record CreateReservationCommand(UUID tableId,
+                Long seatsNumber,
+                LocalDateTime startDate,
+                LocalDateTime endDate) {
 
-        private UUID tableId;
-        private Long seatsNumber;
-        private LocalDateTime startDate;
-        private LocalDateTime endDate;
 }

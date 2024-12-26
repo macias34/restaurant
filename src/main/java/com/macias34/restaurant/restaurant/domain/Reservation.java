@@ -45,14 +45,17 @@ public class Reservation {
     @Enumerated
     private Status status;
 
+    private Long seatsNumber;
+
     @Getter
     @Transient
     private List<DomainEvent> uncommitedEvents = new ArrayList<>();
 
-    public Reservation(TimeSlot timeSlot, TableId tableId) {
+    public Reservation(TableId tableId, TimeSlot timeSlot, Long seatsNumber) {
         this.id = ReservationId.generate();
-        this.timeSlot = timeSlot;
         this.tableId = tableId;
+        this.seatsNumber = seatsNumber;
+        this.timeSlot = timeSlot;
         this.status = Status.REQUESTED;
     }
 
@@ -62,7 +65,7 @@ public class Reservation {
         }
 
         this.status = Status.CONFIRMED;
-        apply(new ReservationConfirmed(id));
+        apply(new ReservationConfirmed(id, tableId, timeSlot, seatsNumber));
     };
 
     public boolean isConfirmed() {
