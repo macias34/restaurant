@@ -19,7 +19,7 @@ import jakarta.persistence.Transient;
 import lombok.Getter;
 
 @Entity
-@jakarta.persistence.Table(name = "dining_table")
+@jakarta.persistence.Table(name = "tables")
 public class Table {
     @Getter
     @EmbeddedId
